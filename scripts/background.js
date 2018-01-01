@@ -24,6 +24,15 @@ chrome.runtime.onMessage.addListener( function( msg, sender ) {
     }
   }
 
+  if ( msg.from === 'content' && msg.subject === 'pageLoad' ) {
+
+    page_id = sender.tab.id;
+
+    chrome.browserAction.setBadgeText( {
+      text: ""
+    } );
+
+  }
 
     if ( msg.from === 'popup' ) {
         if ( msg.subject === 'soundtest' ) {

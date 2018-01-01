@@ -26,3 +26,10 @@ observer.observe( recaptchaDiv, {
     attributes: true,
     attributeFilter: [ 'style' ]
 } );
+
+window.onload = function() {
+  chrome.runtime.sendMessage( {
+    from: 'content',
+    subject: 'pageLoad'
+  } );
+}
