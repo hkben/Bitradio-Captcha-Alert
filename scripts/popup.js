@@ -1,5 +1,5 @@
 var testBtn = document.getElementById( "testBtn" );
-var tabBtn = document.getElementById( "tabBtn" );
+var goToTabBtn = document.getElementById( "goToTabBtn" );
 
 testBtn.addEventListener( "click", function() {
     chrome.runtime.sendMessage( {
@@ -9,10 +9,9 @@ testBtn.addEventListener( "click", function() {
 
 } );
 
-tabBtn.addEventListener( "click", function() {
-    chrome.runtime.sendMessage( {
-        from: 'popup',
-        subject: 'tabToFront'
-    } );
-
+goToTabBtn.addEventListener( "click", function() {
+  chrome.runtime.sendMessage( {
+      from: 'popup',
+      subject: 'tabToFront'
+  } );
 } );

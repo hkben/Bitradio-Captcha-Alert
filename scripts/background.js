@@ -4,16 +4,25 @@ var page_id;
 myAudio.src = chrome.extension.getURL( "sounds/alert.mp3" );
 
 chrome.runtime.onMessage.addListener( function( msg, sender ) {
-    if ( msg.from === 'content' ) {
-        if ( msg.subject === 'showPageAction' ) {
-            myAudio.play();
-            // chrome.pageAction.show(sender.tab.id);
-        }
+  if ( msg.from === 'content' && msg.subject === 'domChanged' ) {
+    page_id = sender.tab.id;
 
-        if ( msg.subject === 'pageLoaded' ) {
-            page_id = sender.tab.id;
-        }
+    if ( msg.value ) {
+
+      myAudio.play();
+
+      chrome.browserAction.setBadgeText( {
+        text: "!"
+      } );
+
+    } else {
+
+      chrome.browserAction.setBadgeText( {
+        text: ""
+      } );
+
     }
+  }
 
 
     if ( msg.from === 'popup' ) {
